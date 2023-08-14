@@ -1,0 +1,177 @@
+@font-face {
+  font-display: swap;
+  font-family: Alaska;
+  src: url(../src/assets/fonts/alaska.ttf) format("truetype")
+}
+
+*{
+  margin: 0;
+  padding: 0;
+  /* font-family: 'Quattrocento Sans', sans-serif; */
+  font-family: alaska, sans-serif;
+  color: white;
+  text-decoration: none;
+  list-style: none;
+  box-sizing: border-box;
+}
+
+
+:root{
+    --section-padding-block: 4rem;
+    --animations-transition: 1.3s .3s cubic-bezier(0, 0.55, 0.45, 1);
+}
+
+.marquee img{
+  height: 250px;
+}
+
+.marquee .child{
+  margin-inline: 1.5rem;
+}
+
+section{
+    padding-block: var(--section-padding-block);
+}
+
+#shadow-host-companion{
+  display: none;
+}
+
+body{
+    background-color: rgb(25, 25, 25);
+    overflow-x: hidden;
+}
+
+h2{
+    font-size: 0;
+    line-height: 1.4;
+}
+
+h3{
+    font-size: 2rem;
+}
+
+h4{
+    font-size: 1.5rem;
+}
+
+p{
+    line-height: 1.4;
+    color: rgb(220, 220, 220);
+}
+
+img{
+    max-width: 100%;
+}
+a.active{
+  font-weight: bold;
+}
+
+p,span,a{
+  font-weight: 300;
+}
+
+.grey__desc{
+  font-size: 1.2rem;
+  color: rgb(232, 232, 232);
+}
+
+
+.contact__btn a{
+  padding: 1rem 1.4rem;
+  background: black;
+  border-radius: 1.2rem;
+}
+
+/* Default container styles */
+.container {
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+} 
+  
+
+.grain{
+    z-index: 99;
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+    opacity: .025;
+    background-image: url(./assets/img/grain-background.png);
+    background-position: center center;
+}
+
+.background{
+    height: 100vh;
+    width: 100vw;
+    position: fixed;
+    left: 0;
+    top: 0;
+    pointer-events: none;
+    z-index: 0;
+    display: flex;
+    justify-content: center;
+    z-index: -1;
+}
+
+.background .container{
+    display: flex;
+    padding-top: 10rem;
+    min-width: 100%;
+}
+
+.red-blur,
+.blue-blur{
+    height: 20rem;
+    width: 25rem;
+    border-radius: 50%;
+    filter: blur(70px);
+}
+
+.red-blur{
+    background-color: #7b0b8d;
+}
+
+.blue-blur{
+    background-color: #115e6f;
+    transform: translateX(-10rem);
+}
+
+@media (min-width: 640px) {
+    .container {
+      max-width: 640px;
+    }
+  }
+  
+  @media (min-width: 768px) {
+    .container {
+      max-width: 768px;
+    }
+    .marquee img{
+      height: 400px;
+    }
+    
+  }
+  
+  @media (min-width: 1024px) {
+    .container {
+      max-width: 1024px;
+    }
+  }
+  
+  @media (min-width: 1280px) {
+    .container {
+      max-width: 1280px;
+    }
+  }
+  
+  @media (min-width: 1536px) {
+    .container {
+      max-width: 1536px;
+    }
+  }
+
