@@ -84,6 +84,8 @@ const products = [
         projectHeroText: 'Dermo Studio era una marca ya asentada en el mercado, sin embargo, no contaban con una identidad de marca. Esto impedía su crecimiento y desarrollo ya que visualmente no transmitían confianza ni profesionalismo.',
         projectSecondText: 'Luego de crearles su identidad de marca, y plasmarla en sus redes sociales, la marca empezó a crecer exponencialmente tanto en consultas y clientes, como en seguidores de manera orgánica.',
         logo: dermoLogo,
+        leftBlurBackground: "#23664d",
+        rightBlurBackground: "#105957",
         heroImgs: [
             dermoHorizontalImg6,
         ],
@@ -113,6 +115,8 @@ const products = [
         projectHeroText: 'Ante la necesidad de destacarse en el rubro, buscaban como objetivo impactar visualmente con sus piezas gráficas en redes sociales, llamando así la atención de futuros clientes. La implementación de fotoproductos de alta calidad y recursos neón y 3D fueron la decisión correcta.',
         projectSecondText: 'La implementación de estas piezas dio lugar al crecimiento de clientes y del engagement de la cuenta en redes sociales.',
         logo: bigCocoLogo,
+        leftBlurBackground: "#380866",
+        rightBlurBackground: "#12625b",
         heroImgs: [
             bigCocoVerticalImg1,
             bigCocoVerticalImg2
@@ -138,6 +142,8 @@ const products = [
         projectHeroText: 'Ante su rápido crecimiento y la necesidad de formalizar su emprendimiento, Barbie decidió darle un impulso a su marca. El desafío fue mantener su toque personal y a su vez adaptarlo a las necesidades del mercado en ese rubro.',
         projectSecondText: 'Logré incorporar la sutileza y las formas orgánicas que ella buscaba, con lo impulsivo, rápido y enérgico del rubro del fitness.',
         logo: barbieLogo,
+        leftBlurBackground: "#8c5354",
+        rightBlurBackground: "#452a44",
         heroImgs: [
             barbieHorizontalImg7
         ],
@@ -166,6 +172,8 @@ const products = [
         projectHeroText: 'Luego de que le dieron un giro 360º a su identidad de marca, quedé a cargo de crear la imágen visual de la empresa en redes sociales. El desafío fue adaptar los requerimientos del cliente en conjunto con la identidad que habían creado.',
         projectSecondText: 'Darle una estética moderna, limpia y llamativa fue la clave. El enfoque que se le dio superó las expectativas del cliente y la empresa consiguió una estética digna del rol significativo que ocupan en CDMX.',
         logo: myHomeLogo,
+        leftBlurBackground: "#1984a1",
+        rightBlurBackground: "#07405d",
         heroImgs: [
             myHomeVerticalImg1,
             myHomeVerticalImg2
@@ -191,6 +199,8 @@ const products = [
         projectHeroText: 'Fue muy importante para que se desarrollaran en el rubro y se introdujeran en el mercado objetivo que precisaban darle determinado enfoque a su visual. Generar contenido visual de calidad y de relevancia para las problemáticas actuales fue muy importante en su proceso de crecimiento.',
         projectSecondText: 'Fue todo un éxito ya que lograron asentarse en Argentina y luego en Chile, y comenzar a brindar un servicio corporativo empresarial y no solo con particulares.',
         logo: solveryLogo,
+        leftBlurBackground: "#00252f",
+        rightBlurBackground: "#0d4c4e",
         heroImgs: [
             solveryHorizontal1
         ],
@@ -215,6 +225,8 @@ const products = [
         projectHeroText: 'Liwis es una marca ya con un año de trayectoria, intentando adentrarse en el mundo de agencias para creación de eventos en EEUU, sin embargo, no contaban con una identidad de marca. Esto impedía su crecimiento y desarrollo como marca ya que visualmente no transmitían confianza ni profesionalismo.',
         projectSecondText: 'Luego de crearles su identidad de marca, la agencia está lista para continuar desarrollándose en el rubro, generando confianza en sus clientes y obteniendo reconocimiento de imágen.',
         logo: liwisLogo,
+        leftBlurBackground: "#825c29",
+        rightBlurBackground: "#4b250c",
         heroImgs: [
             liwisHorizontalImg1
         ],
@@ -239,6 +251,8 @@ const products = [
         projectHeroText: 'Tameco se encontraba muy asentado en el mercado, no solo por su trayectoria sino que también por sus clientes, habiendo trabajado con empresas como Carrefour, Axion, Osde, BBVA y muchas más',
         projectSecondText: 'Sin embargo, la empresa quedó arraigada a medios obsoletos y antiguos de difusión y nunca se había insertado en el mundo de las redes sociales. Ahora si, Tameco está listo para profundizar su espectro de clientes, teniendo un nuevo canal de comunicación.',
         logo: tamecoLogo,
+        leftBlurBackground: "#ac1247",
+        rightBlurBackground: "#253c4b",
         heroImgs: [
             tamecoHorizontalImg3
         ],

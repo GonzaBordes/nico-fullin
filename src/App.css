@@ -89,7 +89,7 @@ h1{
 
 #projects ul{
     display: grid;
-    gap: 6rem;
+    gap: 10rem;
 }
 
 #projects ul li{
