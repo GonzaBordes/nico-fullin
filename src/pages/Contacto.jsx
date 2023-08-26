@@ -50,7 +50,7 @@ export default function Contacto() {
             <li>
               <div className="contact-box">
                 <h3 className="grey__desc">Instagram</h3>
-                <a href="www.instagram.com/fullingraficos/" target="_blank" className="contact-link">
+                <a href="https://www.instagram.com/fullingraficos/" target="_blank" className="contact-link">
                 <svg  viewBox="0 0 36 36" xmlns="http://www.w3.org/2000/svg">
                   
                   <g mask="url(#mask0_43_204)">
