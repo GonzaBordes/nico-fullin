@@ -7,6 +7,8 @@ import HeroImgs from './HeroImgs'
 
 export default function ProjectsList() {
 
+  
+
   useEffect(() => {
    
 
@@ -48,7 +50,7 @@ export default function ProjectsList() {
                           <p>{project.homeText}</p>
                       </div>
                       <div data-scroll  className="project__images">
-                        <HeroImgs heroImgs={project.heroImgs} slug={project.slug} name={project.name} />
+                        <HeroImgs heroImgs={project.heroImgs} slug={project.slug} name={project.name} proyectos={Projects} />
                       </div>                      
               </li>
                   )

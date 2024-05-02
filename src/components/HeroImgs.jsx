@@ -8,7 +8,7 @@ export default function HeroImgs({heroImgs, slug, name}) {
         heroImgs.map((img,i) => {
           return (                            
               <picture key={i}  >
-                <Link to={'proyectos/'+slug}>
+                <Link to={'/'+slug}>
                     <img src={img} alt={`Imagen descriptiva del proyecto ${name}`} />
                 </Link>
               </picture>

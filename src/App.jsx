@@ -1,6 +1,7 @@
 import React from 'react';
 import { Route, Routes} from 'react-router-dom';
 import { useEffect } from 'react';
+import { ThemeProvider } from './context/ThemeContext.jsx';
 import './App.css'
 import './index.css'
 
@@ -16,6 +17,7 @@ import useSmoothScroll from './hooks/UseSmoothScroll.jsx'
 
 
 
+
 const App = () => {
 
   const pathname = useLocation()
@@ -27,16 +29,19 @@ const App = () => {
 
 
   return (
-          <div className='App'>
-            <Header/>
-            <Routes>
-              <Route path="/" element={<Home/>} />
-              <Route path="/contacto" element={<Contacto/>} />
-              <Route path="/sobre-mi" element={<SobreMi/>} />
-              <Route path="/proyectos/:slug" element={<SingleProject/>} />
-            </Routes>
-            <Footer/>
-          </div>           
+    <ThemeProvider>
+      <div className='App'>
+        <Header/>
+        <Routes>
+          <Route path="/" element={<Home/>} />
+          <Route path="/contacto" element={<Contacto/>} />
+          <Route path="/sobre-mi" element={<SobreMi/>} />
+          <Route path="/:slug" element={<SingleProject/>} />
+        </Routes>
+        <Footer/>
+      </div>        
+    </ThemeProvider>
+             
   );
 }
 
