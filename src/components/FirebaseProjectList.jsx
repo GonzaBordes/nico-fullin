@@ -1,14 +1,19 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect,usela } from "react";
 import { db } from "../../firebase";
-import { getDocs, collection } from "firebase/firestore";
+import { getDocs, collection, doc } from "firebase/firestore";
 import HeroImgs from "./HeroImgs";
 import gsap from "gsap";
 import ScrollTrigger from "gsap/dist/ScrollTrigger";
+import { useTranslation } from "react-i18next";
+import { useLanguage } from '../context/LanguageContext';
 
 const FirebaseProjectList = () => {
   const [proyectos, setProyectos] = useState([]);
   const [filteredProjects, setFilteredProjects] = useState([]);
   const [filter, setFilter] = useState(null);    
+
+  const {t} = useTranslation()
+  const { language } = useLanguage();
 
   gsap.registerPlugin(ScrollTrigger)
 
@@ -20,74 +25,92 @@ const FirebaseProjectList = () => {
           querySnapshot.forEach((doc) => {
             proyectosData.push({ id: doc.id, ...doc.data()});
           });
+
           setProyectos(proyectosData);
-          setFilteredProjects(proyectosData); 
-          
+          setFilteredProjects(proyectosData);          
       } catch (error) {
         console.error('Error al obtener los proyectos:', error);
       }
     }
 
+    const projectsH2 = document.getElementById('projects').querySelector('h2');
+    const filterButtonsAll = document.querySelectorAll('.filters button');
+
+    const btnTl = gsap.timeline({
+      scrollTrigger: {
+        trigger: '.filters',
+        start: 'top 80%',
+      },
+    });
+
+    btnTl.from(projectsH2, {
+      duration: 1.2,
+      opacity: 0,
+      xPercent: 20,
+    })
+    .from(filterButtonsAll, {
+      duration: 1.2,
+      opacity: 0,
+      x: -20,
+      stagger: 0.13,
+    }, '-=1');
+
     fetchProyectos();
+
+    
   }, []);
 
-
-
   useEffect(() => {
+    if (proyectos.length > 0) {
+        const projectsContainers = document.querySelectorAll('#projects li');
+       
 
-    if(proyectos.length > 0){
+        // Crea una línea de tiempo global para todas las animaciones de proyectos
+        let projectsTimeline = gsap.timeline();
 
-      const projectsContainers = document.querySelectorAll('#projects li')
-      const leftBlurDiv = document.querySelector('.background .red-blur')
-      const rightBlurDiv = document.querySelector('.background .blue-blur')
+        // Itera sobre los proyectos
+        projectsContainers.forEach(project => {
+            let content = project.querySelector('.project__content');
+            let images = project.querySelectorAll('.project__images picture');
 
-      const projectObserver = new IntersectionObserver(entries => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            const projectIndex = entry.target.getAttribute('data-index');
-            if (projectIndex !== null) {
-              leftBlurDiv.style.background = proyectos[projectIndex].leftBlurBackground;
-              rightBlurDiv.style.background = proyectos[projectIndex].rightBlurBackground;
-            }
-          }
-        });
-      },{threshold: .1});
-
-      projectsContainers.forEach(projectContainer => {
-        projectObserver.observe(projectContainer)
-      });
-
-      projectsContainers.forEach(project => {
-        let tl = gsap.timeline({
-          scrollTrigger: {
-            trigger: project, // El disparador de la animación es el propio proyecto
-            start: "top 80%", // La animación comienza cuando el 80% del proyecto está visible
-            end: "bottom 20%", // La animación termina cuando el 20% del proyecto está visible
-            toggleActions: "play none none none" // Controla cómo se activa y desactiva la animación
-          }
+            // Agrega las animaciones al timeline global
+            projectsTimeline.from(content, { opacity: 0, duration: 1 });
+            projectsTimeline.from(images, { scale: 1.5, y: -40, x: 40, opacity: 0, duration: 1, stagger: .1 }, "-=1");
         });
 
-        let content = project.querySelector('.project__content')
-        let images = project.querySelectorAll('.project__images picture')
+        // Define el scrollTrigger para el timeline global
+        gsap.registerPlugin(ScrollTrigger);
 
-        tl.from(content,{opacity: 0, duration: 1})
-        tl.from(images,{scale: 1.5, y: -40, x: 40, opacity:0, duration: 1, stagger: .1}, "-=1")
-      });
-      
+        ScrollTrigger.create({
+            animation: projectsTimeline,
+            trigger: "#projects ul", // El disparador es el contenedor de todos los proyectos
+            
+        });
+
+        // Devuelve una función de limpieza para eliminar las animaciones al desmontar el componente
+        return () => {
+            projectsTimeline.kill();
+        };
     }
 
-    
+  }, [proyectos]);
+
+  useEffect(() => {
+      if (proyectos.length > 0) {
+        const projectsList= document.querySelectorAll('#projects ul');
+      
+
+        gsap.from(projectsList,{opacity:0, y: 20,duration: .6})
+    }
+  }, [filter]);
 
 
-    
-
-
-
-  }, [filteredProjects]);
-
-  const handleFilterClick = (selectedFilter) => {
+  const handleFilterClick = (event) => {
+    const selectedButton = event.target; // Obtenemos el botón clickeado
+    const selectedFilter = selectedButton.dataset.filter; // Obtenemos el valor del atributo data-filter del botón clickeado
+  
     setFilter(selectedFilter);
-    if (selectedFilter) {
+    if (selectedFilter !== "Mostrar Todos") {
       const filteredProjects = proyectos.filter(project => 
         project.category && project.category.includes(selectedFilter)
       );
@@ -95,26 +118,30 @@ const FirebaseProjectList = () => {
     } else {
       setFilteredProjects(proyectos); // Mostrar todos los proyectos nuevamente
     }
-
-   
+  
+    // Agregar la clase "active" al botón seleccionado y quitarla de los demás
+    const buttonsAll = document.querySelectorAll('.filters button');
+    buttonsAll.forEach(btn => {
+      btn.classList.remove('active');
+    });
+    selectedButton.classList.add('active');
   };
 
   return (
     <>
       <section data-scroll id="projects">
-        <h2>Proyectos seleccionados</h2>
-        <div className="filters">
-          <button onClick={() => handleFilterClick("identidad de Marca")}>Identidad de Marca</button>
-          <button onClick={() => handleFilterClick("Branding")}>Branding</button>
-          <button onClick={() => handleFilterClick("Redes Sociales")}>Redes Sociales</button>
-          <button onClick={() => handleFilterClick("Web")}>Web</button>
-          <button onClick={() => handleFilterClick(null)}>Mostrar Todos</button>
+        <h2 className="container">{t('PROJECTS HEADING')}</h2>
+        <div className="filters container">
+          <button className="active" data-filter="Mostrar Todos" onClick={handleFilterClick}>{t('SHOW ALL')}</button>
+          <button data-filter="Identidad de Marca" onClick={handleFilterClick}>{t('BRAND IDENTITY')}</button>
+          <button data-filter="Redes Sociales" onClick={handleFilterClick}>{t('SOCIAL NETWORKS')}</button>
+          <button data-filter="Web" onClick={handleFilterClick}>Web</button>
         </div>
-
-        <ul className="project-list">
+        <div className="container">
+          <ul className="project-list">
           {filteredProjects.map((project, i) => {
             return (
-              <li key={project.slug} data-index={i} className={project.slug}>
+              <li key={project.id} data-index={i} className={project.slug}>
                 <div data-scroll className="project__content">
                   <span>
                     <img
@@ -124,7 +151,13 @@ const FirebaseProjectList = () => {
                     />
                   </span>
                   <h3>{project.name}</h3>
-                  <p>{project.homeText}</p>
+                  {language === 'en' ? (
+                      <p>{project.homeTextEN}</p>
+                    ) : (
+                      <p>{project.homeText}</p>
+                    )
+                  }
+                  
                 </div>
                 <div data-scroll className="project__images">
                   <HeroImgs
@@ -136,8 +169,10 @@ const FirebaseProjectList = () => {
               </li>
             );
           })}
-        </ul>
+          </ul>
+        </div>
       </section>
+      
     </>
   )
 }

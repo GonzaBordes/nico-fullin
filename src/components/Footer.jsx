@@ -2,14 +2,16 @@ import logo from '../assets/img/logo-blanco.png'
 import Socials from './Socials'
 import instaLogo from '../assets/img/insta-logo.svg'
 import linkedinLogo from '../assets/img/linkedin-logo.svg'
+import { useTranslation } from "react-i18next";
 
 export default function Footer() {
+  const {t} = useTranslation()
   return (
     <>
        <footer>
         <div  className="container">
             <div className="footer__content">
-              <span>Me encantaría conocer tu proyecto y ayudarte a darle la forma que necesita para crecer. ¡No dudes en contactarme!</span>
+              <span>{t('FOOTER SPAN')}</span>
               <Socials/>
             </div>           
             <div className="footer-logo__wrapper">

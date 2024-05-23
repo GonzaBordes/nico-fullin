@@ -1,34 +1,39 @@
 import identidadLogo from '../assets/img/identidad-icon.svg'
 import prototipadoLogo from '../assets/img/prototipado-icon.svg'
 import redesLogo from '../assets/img/redes-icon.svg'
+import { useTranslation } from "react-i18next";
 
 export default function Services() {
+    const {t} = useTranslation()
   return (
     <section id="services">
+        <div className="container">
             <h2>Servicios que ofrezco</h2>
             <ul className="not-faded-list">
                 <li>
-                    <h3>Prototipos web</h3>
-                    <p>Creación de modelos interactivos y visuales de estructura y diseño de tu página web o aplicación siguiendo buenas prácticas de diseño UX/UI.</p>
+                    <h3>{t('SERVICE ONE')}</h3>
+                    <p>{t('DESCRIPTION SERVICE ONE')}</p>
                     <picture>
                         <img src={prototipadoLogo} alt="" />
                     </picture>
                 </li>
                 <li>
-                    <h3>Identidad de marca</h3>
-                    <p> Creación apropiada de identidad visual, para que tu negocio, marca o emprendimiento generen impacto visual en el público objetivo.</p>
+                    <h3>{t('SERVICE TWO')}</h3>
+                    <p> {t('DESCRIPTION SERVICE TWO')}</p>
                     <picture>
                         <img src={identidadLogo} alt="" />
                     </picture>
                 </li>
                 <li>
-                    <h3>Social media</h3>
-                    <p> Diseño de gráficas, feeds y posteos de tus redes sociales para impulsar tu negocio digital.</p>
+                    <h3>{t('SERVICE THREE')}</h3>
+                    <p> {t('DESCRIPTION SERVICE THREE')}</p>
                     <picture>
                         <img src={redesLogo} alt="" />
                     </picture>
                 </li>
             </ul>
+        </div>
+           
     </section>
   )
 }

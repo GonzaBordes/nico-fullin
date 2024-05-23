@@ -1,19 +1,29 @@
 
 
-import ProjectsList from "../components/ProjectsList";
 import Services from "../components/Services";
 import { useEffect } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 import { Power1 } from "gsap";
 import FirebaseProjectList from "../components/FirebaseProjectList";
+import { useTranslation } from "react-i18next";
 
 
 export default function Home() {
 
+  const {t} = useTranslation()
+
   gsap.registerPlugin(ScrollTrigger)
 
   useEffect(() => {
+
+    const leftBg = document.querySelector('.background .red-blur')
+    const rightBg = document.querySelector('.background .blue-blur')
+
+    setTimeout(() => {
+      leftBg.style.backgroundColor = `#7b0b8d`
+      rightBg.style.backgroundColor = `#115e6f`
+    }, 200);
 
     // Hero Section animations
     const heroP = document.querySelector('#hero p')
@@ -51,12 +61,14 @@ export default function Home() {
 
   return (
     <>
-      <main className="container">
+      <main>
         <section id="hero">
-          <h2 className="scale-up" >Me apasiona darle vida e identidad a los proyectos e ideas en las que trabajo.</h2>
-          <div>
-          </div>
-          <p className="grey__desc not-faded">Nicolas Fullin - Diseñador gráfico</p>
+          <div className="container">
+            <h2 className="scale-up" >{t('HEROH2')}</h2>
+            <div>
+            </div>
+            <p className="grey__desc not-faded">Nicolas Fullin - {t('HEROP')}</p>
+          </div>          
         </section>
         <Services/>
         <FirebaseProjectList/>

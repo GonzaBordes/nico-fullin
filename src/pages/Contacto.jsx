@@ -2,9 +2,11 @@ import { gsap } from "gsap"
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 import { useEffect } from "react";
 import { Power1 } from "gsap";
+import { useTranslation } from "react-i18next";
 
 
 export default function Contacto() {
+  const {t} = useTranslation()
 
   gsap.registerPlugin(ScrollTrigger)
 
@@ -18,8 +20,8 @@ export default function Contacto() {
   return (
     <main className="container">
       <section className="scale-up contacto" id="hero">
-          <h2>Hablemos para trabajar juntos en tu próximo proyecto</h2>
-          <p>No dudes en contactarme para consultas o una charla virtual. ¡Hablemos sobre cómo puedo ayudarte a mejorar la experiencia de usuario y el diseño de tu negocio!</p>
+          <h2>{t('HERO CONTACT')}</h2>
+          <p>{t('P CONTACT')}</p>
           <ul>
             <li>
               <div className="contact-box">

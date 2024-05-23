@@ -39,6 +39,12 @@ const App = () => {
           <Route path="/:slug" element={<SingleProject/>} />
         </Routes>
         <Footer/>
+        <div class="background">
+          <div class="container">
+            <div class="red-blur"></div>
+            <div class="blue-blur"></div>
+          </div>     
+        </div>
       </div>        
     </ThemeProvider>
              
