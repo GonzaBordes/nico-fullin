@@ -8,6 +8,7 @@ import gsap from "gsap";
 import ScrollTrigger from "gsap/dist/ScrollTrigger";
 
 export default function Header() { 
+  console.log("HOLA")
 
   const [openedNav, setOpenedNav] = useState(false)
 
