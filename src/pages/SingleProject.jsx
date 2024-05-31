@@ -8,6 +8,7 @@ import { useRef, useEffect, useState } from 'react';
 import { db } from "../../firebase";
 import { getDocs, collection,where, query, doc } from "firebase/firestore";
 import { useLanguage } from '../context/LanguageContext';
+import WebsiteLayout from '../layouts/WebsiteLayout';
 
 
 export default function SingleProject() {
@@ -96,80 +97,82 @@ export default function SingleProject() {
   }, [project]);
 
   return (
-    <main>
-      {project ? (
-        <>
-          <section id="hero" className="single-project container">
-            <div className="project__content not-faded" data-scroll-class="faded">
-                {language === "en" ? (
-                    <p className="grey__desc not-faded">{Array.isArray(project.categoryEN) ? project.categoryEN.join(" | ") : project.categoryEN}</p>
-                ) : (
-                    <p className="grey__desc not-faded">{Array.isArray(project.category) ? project.category.join(" | ") : project.category}</p>
-                )}
-                <h2>
-                    {project.name}
-                </h2>
-            </div>
-            <div className="sobremi-content-right">
-                {language === 'en' ? (
-                    <p>{project.projectHeroTextEN}</p>
-                ) : (
-                    <p>{project.projectHeroText}</p>
-                )}
-            </div>               
-        </section>
-          <section id='project-showcase'>
-                    <h2>Te muestro un poco mas acerca de este proyecto</h2>
+    <>
+      <main>
+        {project ? (
+          <>
+            <section id="hero" className="single-project container">
+              <div className="project__content not-faded" data-scroll-class="faded">
+                  {language === "en" ? (
+                      <p className="grey__desc not-faded">{Array.isArray(project.categoryEN) ? project.categoryEN.join(" | ") : project.categoryEN}</p>
+                  ) : (
+                      <p className="grey__desc not-faded">{Array.isArray(project.category) ? project.category.join(" | ") : project.category}</p>
+                  )}
+                  <h2>
+                      {project.name}
+                  </h2>
+              </div>
+              <div className="sobremi-content-right">
+                  {language === 'en' ? (
+                      <p>{project.projectHeroTextEN}</p>
+                  ) : (
+                      <p>{project.projectHeroText}</p>
+                  )}
+              </div>               
+          </section>
+            <section id='project-showcase'>
+                      <h2>Te muestro un poco mas acerca de este proyecto</h2>
 
-                      {project.category.length === 1 && project.category[0] === 'Web'? (
-                            <div className='web-images'>
-                              {project.webImages.map((image, i) => {
-                                
-                                return <picture key={i}>
-                                          <div className='overflow-box'>
-                                            <img src={image} alt="Web project image" />
-                                          </div>                                          
-                                        </picture>
-                              })}
-                            </div>                            
+                        {project.category.length === 1 && project.category[0] === 'Web'? (
+                              <div className='web-images'>
+                                {project.webImages.map((image, i) => {
+                                  
+                                  return <picture key={i}>
+                                            <div className='overflow-box'>
+                                              <img src={image} alt="Web project image" />
+                                            </div>                                          
+                                          </picture>
+                                })}
+                              </div>                            
+                          ) : (
+                            <ImgMarquee images={project.horizontalImgArray} />     
+                      )}   
+
+                      <div className="project-overview">
+                        <h3>Mas detalles del proyecto</h3>
+
+                        {language === 'en' ? (
+                            <p>{project.projectSecondTextEN}</p>
                         ) : (
-                          <ImgMarquee images={project.horizontalImgArray} />     
-                    )}   
+                            <p>{project.projectSecondText}</p>
+                        )}
 
-                    <div className="project-overview">
-                      <h3>Mas detalles del proyecto</h3>
-
-                      {language === 'en' ? (
-                          <p>{project.projectSecondTextEN}</p>
-                      ) : (
-                          <p>{project.projectSecondText}</p>
-                      )}
-
-                    </div>
-                    <ul id="vertical-images" ref={verticalImgsRef}>
-                      {
-                        project.verticalImgArray.length > 1 ? (
-                          project.verticalImgArray.map((img, i) => (
-                            <li key={i}>
-                              <picture>
-                                <img src={img} alt={`Imagen descriptiva del proyecto ${project.name}`} />
-                              </picture>
-                            </li>
-                          ))
-                        ) : (
-                          <></>
-                        )
-                      }
-                    </ul>
-          </section> 
-        </>
-                       
-        ) : (
-          <></>
-        )
-      }
-      
-    </main>
+                      </div>
+                      <ul id="vertical-images" ref={verticalImgsRef}>
+                        {
+                          project.verticalImgArray.length > 1 ? (
+                            project.verticalImgArray.map((img, i) => (
+                              <li key={i}>
+                                <picture>
+                                  <img src={img} alt={`Imagen descriptiva del proyecto ${project.name}`} />
+                                </picture>
+                              </li>
+                            ))
+                          ) : (
+                            <></>
+                          )
+                        }
+                      </ul>
+            </section> 
+          </>
+                        
+          ) : (
+            <></>
+          )
+        }
+        
+      </main>
+    </>
     
   )
 }

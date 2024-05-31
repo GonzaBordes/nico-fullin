@@ -5,6 +5,8 @@ import { useEffect } from "react";
 import { Power1 } from "gsap";
 import { useTranslation } from "react-i18next";
 
+import WebsiteLayout from "../layouts/WebsiteLayout";
+
 export default function SobreMi() {
   const {t} = useTranslation()
 

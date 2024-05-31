@@ -19,6 +19,7 @@ import Login from './components/Login.jsx';
 import { useLocation } from 'react-router-dom';
 import useSmoothScroll from './hooks/UseSmoothScroll.jsx'
 import { UserProvider, UserContext } from './context/UserContext';
+import WebsiteLayout from './layouts/WebsiteLayout.jsx';
 
 
 
@@ -35,25 +36,19 @@ const App = () => {
   return (
     <UserProvider>
       <ThemeProvider>
-      <div className='App'>
-        <Header/>
-        <Routes>
-          <Route path="/" element={<Home/>} />
-          <Route path="/contacto" element={<Contacto/>} />
-          <Route path="/sobre-mi" element={<SobreMi/>} />
-          <Route path="/:slug" element={<SingleProject/>} />
-
-          <Route path="/admin" element={<AdminRoute />} />
-          <Route path="/login" element={<Login />} />
-        </Routes>
-        <Footer/>
-        <div class="background">
-          <div class="container">
-            <div class="red-blur"></div>
-            <div class="blue-blur"></div>
-          </div>     
-        </div>
-      </div>        
+        <div className='App'>
+          <Routes>
+            <Route path="/" element={<WebsiteLayout/>}>
+              <Route index element={<Home />} />
+              <Route path="sobre-mi" element={<SobreMi/>} />
+              <Route path="contacto" element={<Contacto/>} />
+              <Route path=":slug" element={<SingleProject/>} />
+            </Route>
+            
+            <Route path="/admin" element={<AdminRoute />} />
+            <Route path="/login" element={<Login />} />
+          </Routes>
+        </div>        
       </ThemeProvider>
     </UserProvider>
              

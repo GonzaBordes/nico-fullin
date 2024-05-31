@@ -8,6 +8,8 @@ import { Power1 } from "gsap";
 import FirebaseProjectList from "../components/FirebaseProjectList";
 import { useTranslation } from "react-i18next";
 
+import WebsiteLayout from "../layouts/WebsiteLayout";
+
 
 export default function Home() {
 
