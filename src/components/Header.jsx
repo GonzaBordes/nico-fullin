@@ -9,8 +9,6 @@ import ScrollTrigger from "gsap/dist/ScrollTrigger";
 
 export default function Header() { 
 
-  console.log('estamos en dev panel')
-
   const [openedNav, setOpenedNav] = useState(false)
 
   gsap.registerPlugin(ScrollTrigger)
