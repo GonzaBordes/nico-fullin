@@ -60,26 +60,26 @@ nav{
     transform: translateY(-10px) rotate(45deg);
 }
 
-header .container {
+.web-layout header .container {
     display: flex;
     justify-content: space-between;
     padding-block: 2rem;
     z-index: 9;
 }
 
-header ul{
+.web-layout header ul{
     display: flex;
     flex-direction: column;
     gap: 2rem;
     align-items: center;
 }
 
-header a{
+.web-layout header a{
     font-size: .8rem;
     font-weight: 400;
 }
 
-header .content{
+.web-layout header .content{
     display: flex;
     gap: 1rem;
 }
@@ -91,14 +91,14 @@ header .content{
     transition: .25s;
 }
 
-header .content svg{
+.web-layout header .content svg{
     width: 2rem;
     height: 2.1rem;
     aspect-ratio: 2/2;
     cursor: pointer;
 }
 
-header .nav-opened svg{
+.web-layout header .nav-opened svg{
     fill: black;
     z-index: 999999999;
 }
@@ -616,11 +616,12 @@ gap: .5rem;
 /* Large screens and up */
 @media (min-width: 768px) {
     
-    header ul{
+    .web-layout header ul{
         gap: 2rem;
+        flex-direction: row;
     }
 
-    header .content{
+    .web-layout header .content{
         align-items: center;
     }
 

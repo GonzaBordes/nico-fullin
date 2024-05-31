@@ -1,13 +1,23 @@
 import {auth} from '../../firebase'
 import { signInWithEmailAndPassword } from 'firebase/auth';
-import { useNavigate  } from 'react-router-dom';
+import { useNavigate, Navigate  } from 'react-router-dom';
 import { useState } from 'react'
+import {  UserContext } from '../context/UserContext';
+import { useContext, useEffect } from 'react';
 
 
 const Login = () => {
+
+    const { usuario } = useContext(UserContext);    
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        if (usuario) {
+        navigate('/admin');
+        }
+    }, [usuario, navigate]);
     
 
-    const navigate = useNavigate();
     // const [showPassword, setShowPassword] = useState(false);
 
     const functAutentication = async(e) => {

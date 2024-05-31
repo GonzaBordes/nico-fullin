@@ -4,7 +4,7 @@ import { Outlet } from "react-router-dom"
 
 const WebsiteLayout = () => {
   return (
-    <>
+    <div className="web-layout">
         <Header />
             <Outlet />
             <div class="background">
@@ -14,7 +14,7 @@ const WebsiteLayout = () => {
                 </div>     
             </div>
         <Footer />
-    </>
+    </div>
   )
 }
 

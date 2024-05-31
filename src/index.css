@@ -6,6 +6,8 @@
 
 
 
+
+
 *{
   margin: 0;
   padding: 0;
@@ -78,7 +80,7 @@ p{
     color: rgb(220, 220, 220);
 }
 
-img{
+img:not(.panel img){
     max-width: 100%;
     display: block;
     border-radius: .6rem;
@@ -88,7 +90,7 @@ a.active{
   opacity: .6;
 }
 
-p,span,a{
+p:not(.panel p),span:not(.panel span),a:not(.panel a){
   font-weight: 300;
 }
 
@@ -255,7 +257,7 @@ nav::after{
 
 
 /* Light Mode */
-.light header h1, 
+.light header:not(.panel header) h1, 
 .light.footer-logo_wrapper img,
 .light .insta-linkedin img{
   filter: invert(1);

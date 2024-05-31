@@ -1,0 +1,87 @@
+/* Inter Bold */
+@font-face {
+    font-family: 'Inter';
+    src: url('../src/assets/fonts/Inter-Bold.woff2') format('woff2');
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+}
+  
+  /* Inter Semi Bold */
+  @font-face {
+    font-family: 'Inter';
+    src: url('../src/assets/fonts/Inter-SemiBold.woff2') format('woff2');
+    font-weight: 600;
+    font-style: normal;
+    font-display: swap;
+}
+  
+  /* Inter Medium */
+  @font-face {
+    font-family: 'Inter';
+    src: url('../src/assets/fonts/Inter-Medium.woff2') format('woff2');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+  
+  /* Inter Regular */
+  @font-face {
+    font-family: 'Inter';
+    src: url('../src/assets/fonts/Inter-Regular.woff2') format('woff2');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+  
+  /* Inter Light */
+  @font-face {
+    font-family: 'Inter';
+    src: url('../src/assets/fonts/Inter-Light.woff2') format('woff2');
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+}
+
+.panel header{
+    border-bottom: 1px solid hsla(0, 0%, 100%, .08);
+    background: hsla(0, 0%, 100%, .01);
+}
+
+.panel *,
+.login *{
+    font-family: Inter;
+}
+
+.panel-nav{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-block: 1rem;
+}
+
+.brand-box{
+    display: flex;
+    align-items: center;
+}
+
+.brand-box img{
+    width: 2.3rem;
+}
+
+.admin-batch{
+    background: #424248;
+    padding: .7rem 1rem;
+    border-radius: 1.4rem;
+    text-transform: uppercase;
+    font-size: .8rem;
+    letter-spacing: 1px;
+    margin-left: 2rem;
+}
+
+.panel-btn{
+    padding: .7rem 1.2rem;
+    background-color: #db1a5a;
+    border-radius: .6rem;
+    font-weight: 500;
+}
