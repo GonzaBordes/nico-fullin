@@ -62,7 +62,7 @@ body{
   border-radius: .7rem;
 }
 
-h2{
+h2:not(.panel h2){
     font-size: 0;
     line-height: 1.4;
 }
@@ -257,13 +257,15 @@ nav::after{
 
 
 /* Light Mode */
-.light header:not(.panel header) h1, 
+.light header:not(.panel header) h1,
 .light.footer-logo_wrapper img,
 .light .insta-linkedin img{
   filter: invert(1);
 }
 
-.light *{
+
+
+.light *:not(.panel a, .admin-batch){
   color: black !important;
 }
 
@@ -275,10 +277,6 @@ nav::after{
 .light body{
   background-color: rgb(238, 238, 238);
 }
-
-.light footer
-
-
 
 .light .background{
   opacity: .8;

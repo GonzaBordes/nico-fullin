@@ -13,7 +13,7 @@ const FirebaseProjectList = () => {
   const [filter, setFilter] = useState(null);    
 
   const {t} = useTranslation()
-  const { language } = useLanguage();
+  const {language } = useLanguage();
 
   gsap.registerPlugin(ScrollTrigger)
 
