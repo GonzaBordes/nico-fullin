@@ -1,0 +1,42 @@
+.project-list-skeleton li{
+    height: 215px;
+    background-color: #272727;
+}
+
+.sk-title{
+    background-color: #505050;
+    width: 40%;
+    height: 20px;
+    border-radius: .7rem;
+}
+
+.skeleton .glow-wrapper{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform: skewX(-20deg);
+}
+
+.skeleton .glow{
+    height: 120%;
+    width: 40%;
+    background: rgba(244, 244, 244, 0.282);
+    position: absolute;
+    top: 0;
+    animation: loadingGlow 1s infinite;
+    filter: blur(15px);
+}
+
+@keyframes loadingGlow {
+    from {
+        transform: translateX(-150%);
+    } to {
+        transform: translateX(250%);
+    }    
+}
+
+.light .sk-title{
+    background-color: lightgrey;
+}

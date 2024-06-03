@@ -41,7 +41,7 @@ const App = () => {
               <Route path=":slug" element={<SingleProject/>} />
             </Route>
 
-            <Route path='/admin' element={<AdminRoute/>}>
+            <Route path='/admin' element={<Panel/>}>
               <Route index element={<PanelProjectsList />}/>
               <Route path="edit/:id" element={<EditProject />}/>
             </Route>

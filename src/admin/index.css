@@ -109,6 +109,8 @@
 .panel main h2{
     font-size: 1rem;
     font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 2px;
     margin-block: 2rem;
 }
 
@@ -119,16 +121,15 @@
 }
 
 #panel-projects li{
-    padding: 2rem;
+    padding: 2rem 2rem .8rem 2rem;
     border-radius: 1rem;
-    border: 1px solid hsl(0deg 0.10% 97.59% / 8%);;
+    border: 1px solid hsl(0deg 0.10% 97.59% / 8%);
 }
 
 #panel-projects h3{
     text-transform: uppercase;
-    letter-spacing: 2px;
-    font-weight: 300;
-    font-size: 1.3rem;
+    font-weight: 500;
+    font-size: 1.1rem;
     z-index: 9;
 }
 
@@ -145,9 +146,20 @@
     padding-top: 7rem;
 }
 
+#panel-projects .icons-wrapper a{
+    padding: 1rem;
+    border-radius: 50%;
+    transition: .3s;
+}
+
+#panel-projects .icons-wrapper a:hover{
+    background: #70707030!important;
+}
+
 #panel-projects .icons-wrapper svg{
     width: 1.6rem;
     stroke-width: 1.3px;
+    display: flex;
 }
 
 .card-bg{
