@@ -22,7 +22,7 @@ const PanelHeader = () => {
       <section id='panel-intro'>
         <div className="container">
             <h2>Bienvenido Nico</h2>
-            <Link to={'/agregar-proyecto'} className='panel-btn'>+ Agregar Proyecto</Link>
+            <Link to={'/admin/new-project'} className='panel-btn'>+ Agregar Proyecto</Link>
         </div>
       </section>
     </>

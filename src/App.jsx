@@ -19,6 +19,7 @@ import useSmoothScroll from './hooks/UseSmoothScroll.jsx'
 import { UserProvider, UserContext } from './context/UserContext';
 import WebsiteLayout from './layouts/WebsiteLayout.jsx';
 import PanelProjectsList from './admin/components/PanelProjectsList.jsx';
+import CreateProject from './admin/components/CreateProject.jsx';
 
 const App = () => {
 
@@ -43,6 +44,7 @@ const App = () => {
 
             <Route path='/admin' element={<Panel/>}>
               <Route index element={<PanelProjectsList />}/>
+              <Route path="new-project" element={<CreateProject />}/>
               <Route path="edit/:id" element={<EditProject />}/>
             </Route>
 

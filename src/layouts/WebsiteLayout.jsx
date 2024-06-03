@@ -6,7 +6,9 @@ const WebsiteLayout = () => {
   return (
     <div className="web-layout">
         <Header />
+            {/* EN OUTLET SE RENDERIZA LO QUE INDIQUE EL ROUTER */}
             <Outlet />
+
             <div class="background">
                 <div class="container">
                 <div class="red-blur"></div>
