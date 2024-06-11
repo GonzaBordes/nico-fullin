@@ -4,7 +4,7 @@ import { collection, addDoc } from "firebase/firestore";
 import { db } from "../../../firebase";
 import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { FaSpinner } from 'react-icons/fa';
-import { toast } from "react-toastify";
+import { Toaster, toast } from 'react-hot-toast';
 import "react-toastify/dist/ReactToastify.css";
 
 const CreateProject = () => {
@@ -86,9 +86,14 @@ const CreateProject = () => {
         horizontalImgArray: urlHorizontalImgArrayPaths,
         verticalImgArray: urlVerticalImgArrayPaths,
       });
-      setLoading(false);
-      toast.success("Proyecto creado con éxito!");
-      navigate("/admin/");
+      // Mostrar toast de éxito
+      toast.success("Proyecto creado");
+
+      // Esperar 3 segundos antes de redirigir a /admin/
+      setTimeout(() => {
+        setLoading(false);
+        navigate("/admin/");
+      }, 3000);
     } catch (error) {
       console.error("Error adding document: ", error);
       setLoading(false);
@@ -248,6 +253,10 @@ const CreateProject = () => {
       <div className="container container-add-project">
         <h3>Agregar Proyecto</h3>
         {step === 1 ? renderStep1() : renderStep2()}
+        <Toaster
+            position="top-center"
+            reverseOrder={true}
+        />
       </div>
     </section>
   );
