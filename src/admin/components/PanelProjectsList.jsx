@@ -42,7 +42,7 @@ const PanelProjectsList = () => {
               { loading ? ( 
                 <ProjectsSkeleton /> 
               ) : (
-                <ul>
+                <ul className="grid-projects">
                     {proyectos.map(proyecto => (
                       <li key={proyecto.id}>
                         <h3>{proyecto.name}</h3>

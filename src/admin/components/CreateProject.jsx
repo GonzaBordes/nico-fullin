@@ -1,9 +1,16 @@
 import { useState } from "react";
+import { useNavigate } from 'react-router-dom';
 import { collection, addDoc } from "firebase/firestore";
 import { db } from "../../../firebase";
 import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
+import { FaSpinner } from 'react-icons/fa';
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const CreateProject = () => {
+  const navigate = useNavigate();
+
+  const [loading, setLoading] = useState(false);
   const [step, setStep] = useState(1);
   const [category, setCategory] = useState([]);
   const [categoryEN, setCategoryEN] = useState([]);
@@ -14,14 +21,14 @@ const CreateProject = () => {
   const [formData, setFormData] = useState({
     name: "",
     slug: "",
-    description: "",
-    descriptionEN: "",
-    mainText: "",
-    mainTextEN: "",
-    secondaryText: "",
-    secondaryTextEN: "",
-    colorLeft: "",
-    colorRight: "",
+    homeText: "",
+    homeTextEN: "",
+    projectHeroText: "",
+    projectHeroTextEN: "",
+    projectSecondText: "",
+    projectSecondTextEN: "",
+    leftBlurBackground: "",
+    rightBlurBackground: "",
   });
 
   const opcionesCategory = ['Identidad de Marca', 'Web', 'Redes Sociales'];
@@ -55,6 +62,7 @@ const CreateProject = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
     try {
       // Upload files to Firebase Storage
       const urlLogoPath = urlLogo ? await uploadFile(urlLogo) : "";
@@ -69,19 +77,22 @@ const CreateProject = () => {
       );
 
       // Save project data to Firestore
-      await addDoc(collection(db, "projects"), {
+      await addDoc(collection(db, "proyectos"), {
         ...formData,
         category,
         categoryEN,
-        urlLogo: urlLogoPath,
-        urlHeroImgs: urlHeroImgsPaths,
-        urlHorizontalImgArray: urlHorizontalImgArrayPaths,
-        urlVerticalImgArray: urlVerticalImgArrayPaths,
+        logo: urlLogoPath,
+        heroImgs: urlHeroImgsPaths,
+        horizontalImgArray: urlHorizontalImgArrayPaths,
+        verticalImgArray: urlVerticalImgArrayPaths,
       });
-      alert("Project added successfully!");
-      // Reset form or navigate to another page
+      setLoading(false);
+      toast.success("Proyecto creado con éxito!");
+      navigate("/admin/");
     } catch (error) {
       console.error("Error adding document: ", error);
+      setLoading(false);
+      toast.error("Error al agregar proyecto.");
     }
   };
 
@@ -109,51 +120,53 @@ const CreateProject = () => {
         name="logo"
         onChange={(e) => setUrlLogo(e.target.files[0])}
       />
+      {urlLogo && <p>Archivo cargado: {urlLogo.name}</p>}
       <label>Imagen principal</label>
       <input
         type="file"
         name="mainImage"
         onChange={(e) => setUrlHeroImgs(e.target.files)}
       />
+      {urlHeroImgs.length > 0 && <p>{urlHeroImgs.length} archivos cargados</p>}
       <label>Descripción corta</label>
       <textarea
-        name="description"
-        value={formData.description}
+        name="homeText"
+        value={formData.homeText}
         onChange={handleChange}
         placeholder="Ingresar descripción"
       />
       <label>Short description</label>
       <textarea
-        name="descriptionEN"
-        value={formData.descriptionEN}
+        name="homeTextEN"
+        value={formData.homeTextEN}
         onChange={handleChange}
         placeholder="Enter short description"
       />
       <label>Texto principal en detalle del proyecto</label>
       <textarea
-        name="mainText"
-        value={formData.mainText}
+        name="projectHeroText"
+        value={formData.projectHeroText}
         onChange={handleChange}
-        placeholder="Enter main text"
+        placeholder="Ingresar texto principal"
       />
       <label>Main text in project detail</label>
       <textarea
-        name="mainTextEN"
-        value={formData.mainTextEN}
+        name="projectHeroTextEN"
+        value={formData.projectHeroTextEN}
         onChange={handleChange}
         placeholder="Enter main text in English"
       />
       <label>Texto secundario en detalle del proyecto</label>
       <textarea
-        name="secondaryText"
-        value={formData.secondaryText}
+        name="projectSecondText"
+        value={formData.projectSecondText}
         onChange={handleChange}
-        placeholder="Enter secondary text"
+        placeholder="Ingresar texto secundario"
       />
       <label>Secondary text in project detail</label>
       <textarea
-        name="secondaryTextEN"
-        value={formData.secondaryTextEN}
+        name="projectSecondTextEN"
+        value={formData.projectSecondTextEN}
         onChange={handleChange}
         placeholder="Enter secondary text in English"
       />
@@ -194,18 +207,18 @@ const CreateProject = () => {
       <label>Color principal</label>
       <input
         type="text"
-        name="colorLeft"
-        value={formData.colorLeft}
+        name="leftBlurBackground"
+        value={formData.leftBlurBackground}
         onChange={handleChange}
-        placeholder="Enter left color"
+        placeholder="Ingresar color principal"
       />
       <label>Color secundario</label>
       <input
         type="text"
-        name="colorRight"
-        value={formData.colorRight}
+        name="rightBlurBackground"
+        value={formData.rightBlurBackground}
         onChange={handleChange}
-        placeholder="Enter right color"
+        placeholder="Ingresar color secundario"
       />
       <label>Imágenes de slider horizontal</label>
       <input
@@ -214,6 +227,7 @@ const CreateProject = () => {
         name="sliderImages"
         onChange={(e) => setUrlHorizontalImgArray(e.target.files)}
       />
+      {urlHorizontalImgArray.length > 0 && <p>{urlHorizontalImgArray.length} archivos cargados</p>}
       <label>Imágenes verticales</label>
       <input
         type="file"
@@ -221,16 +235,17 @@ const CreateProject = () => {
         name="verticalImages"
         onChange={(e) => setUrlVerticalImgArray(e.target.files)}
       />
+      {urlVerticalImgArray.length > 0 && <p>{urlVerticalImgArray.length} archivos cargados</p>}
       <div className="container-btn">
         <button type="button" onClick={() => setStep(1)} className="btn-create">Volver</button>
-        <button type="submit" className="btn-create">Agregar proyecto</button>
+        <button type="submit" className="btn-create add">{loading ? <FaSpinner className="spinner-icon" /> : "+ Agregar proyecto"}</button>
       </div>
     </form>
   );
 
   return (
     <section>
-      <div className="container">
+      <div className="container container-add-project">
         <h3>Agregar Proyecto</h3>
         {step === 1 ? renderStep1() : renderStep2()}
       </div>

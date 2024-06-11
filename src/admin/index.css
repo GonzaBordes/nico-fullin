@@ -179,6 +179,9 @@
     border-radius: 50%;    
 }
 
+.grid-projects{
+    margin-bottom: 60px;
+}
 
 /* Light MODE */
 
@@ -199,11 +202,36 @@
     background-color: #e1e1e1fc;
 }
 
+.light input[type="text"]{
+    background-color: #fff;
+}
+
+.light textarea, .light select, .light select option {
+    background-color: #fff;
+}
+
+.light input[type="file"]{
+    background-color: #fff;
+}
+
+.light button.btn-create:first-of-type{
+    background-color: #f9f9f9;
+    color: #fff;
+}
+
+.light button.btn-create.add {
+    color: #fff !important;
+}
+
+.light button.btn-create:first-of-type:hover {
+    background-color: #e2e2e2;
+}
+
 /* Create Project */
 
-  /* Estilos de los campos de entrada */
-  input,
-  textarea {
+/* Estilos de los campos de entrada */
+input,
+textarea {
     background-color: #1e1e1e;
     border: none;
     border-radius: 4px;
@@ -213,67 +241,95 @@
     padding: 10px;
     width: 100%;
     margin: 10px 0px;
-  }
-  
-  input::placeholder,
-  textarea::placeholder {
+}
+
+input::placeholder,
+textarea::placeholder {
     color: #7f7f7f;
-  }
-  
-  /* Estilos de los botones */
-  button.btn-create{
-    background-color: #D71A59;
+}
+
+/* Estilos de los botones */
+button.btn-create{
+    padding: .7rem 1.2rem;
+    background-color: #db1a5a;
+    border-radius: .6rem;
+    font-weight: 500;
     border: none;
-    border-radius: 4px;
     color: #fff;
     cursor: pointer;
     font-size: 16px;
     margin-top: 20px;
-    padding: 10px 20px;
     transition: background-color 0.3s ease;
-  }
-  
-  button.btn-create:hover {
-    background-color: #D71A59;
-  }
-  
-  /* Estilos del botón "Cancel" */
-  button.btn-create:first-of-type {
+}
+
+button.btn-create:hover {
+    background-color: #db1a5a;
+}
+
+/* Estilos del botón "Cancel" */
+button.btn-create:first-of-type {
     background-color: #4d4d4d;
-  }
-  
-  button.btn-create:first-of-type:hover {
+}
+
+button.btn-create:first-of-type:hover {
     background-color: #3b3b3b;
-  }
-  
-  /* Estilos del icono "User ID" */
-  .user-id {
-    color: #D71A59;
+}
+
+/* Estilos del icono "User ID" */
+.user-id {
+    color: #db1a5a;
     display: inline-block;
     font-size: 18px;
     margin-top: 10px;
+}
+/* Estilos para los select múltiples */
+.multi-select {
+    background-color: #1e1e1e;
+    border: none;
+    border-radius: 4px;
+    color: #fff;
+    font-size: 16px;
+    padding: 10px;
+    width: 100%;
+    overflow-y: hidden;
+}
+
+.multi-select option {
+    background-color: #2d2d2d;
+    color: #fff;
+}
+
+.multi-select option:checked {
+    background-color: #db1a5a;
+}
+
+select option:checked {
+    background-color: #db1a5a; /* Color de fondo personalizado */
+    color: #fff; /* Color del texto personalizado */
   }
-  /* Estilos para los select múltiples */
-    .multi-select {
-        background-color: #1e1e1e;
-        border: none;
-        border-radius: 4px;
-        color: #fff;
-        font-size: 16px;
-        padding: 10px;
-        width: 100%;
-        overflow-y: hidden;
-    }
-    
-    .multi-select option {
-        background-color: #2d2d2d;
-        color: #fff;
-    }
-    
-    .multi-select option:checked {
-        background-color: #D71A59;
-    }
-    .container-btn {
-        display: flex;
-        justify-content: flex-end;
-    }
+.container-btn {
+    display: flex;
+    justify-content: flex-end;
+    gap: 15px;
+}
+.container-add-project form {
+    padding: 40px 0px;
+}
+.container-add-project form input {
+    margin: 20px 0px;
+}
+select.multi-select {
+    margin: 20px 0px;
+}
+.container.container-add-project form p {
+    margin-top: -10px;
+    margin-bottom: 20px;
+}
+.spinner-icon {
+    animation: spin 1s infinite linear;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
