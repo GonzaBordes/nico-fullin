@@ -333,3 +333,79 @@ select.multi-select {
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
 }
+
+/* SWEET ALERT */
+div:where(.swal2-icon).swal2-warning {
+    border-color: #db1a5a !important;
+    color: #db1a5a !important;
+}
+
+div:where(.swal2-icon).swal2-error{
+    border-color: #db1a5a !important;
+    color: #db1a5a !important;
+}
+
+div:where(.swal2-icon).swal2-error [class^=swal2-x-mark-line]{
+    background-color: #db1a5a !important;
+}
+
+div:where(.swal2-container) button:where(.swal2-styled).swal2-default-outline:focus {
+    box-shadow: 0 0 0 2px rgba(219, 26, 90, .5) !important;
+}
+
+div:where(.swal2-container) button:where(.swal2-styled).swal2-confirm:focus {
+    box-shadow: 0 0 0 2px rgba(219, 26, 90, .5) !important;
+}
+
+div:where(.swal2-icon).swal2-warning.swal2-icon-show .swal2-icon-content{
+    color: #db1a5a !important;
+}
+
+.swal2-popup.swal2-modal.swal2-icon-warning.swal2-show {
+    border-bottom: 1px solid hsl(0deg 0.10% 97.59% / 8%);
+    background-color: #232323fc;
+    color: #fff;
+    border-radius: 1rem;
+    border: 1px solid hsl(0deg 0.10% 97.59% / 8%);
+}
+
+.swal2-popup.swal2-modal.swal2-icon-error.swal2-show{
+    border-bottom: 1px solid hsl(0deg 0.10% 97.59% / 8%);
+    background-color: #232323fc;
+    color: #fff;
+    border-radius: 1rem;
+    border: 1px solid hsl(0deg 0.10% 97.59% / 8%);
+}
+
+div#swal2-html-container {
+    font-family: 'Inter';
+    font-weight: 400;
+}
+
+button.swal2-styled {
+    font-family: 'Inter';
+    padding: .7rem 1.2rem;
+    background-color: #db1a5a;
+    border-radius: .6rem;
+    font-weight: 400;
+}
+
+div:where(.swal2-container) button:where(.swal2-styled).swal2-confirm{
+    font-family: 'Inter';
+    padding: .7rem 1.2rem;
+    background-color: #db1a5a !important;
+    border-radius: .6rem;
+    font-weight: 400;
+}
+
+.light .swal2-popup.swal2-modal.swal2-icon-warning.swal2-show {
+    background: #fff;
+}
+
+.light button.swal2-styled {
+    color: #fff !important;
+}
+
+.light .swal2-popup.swal2-modal.swal2-icon-error.swal2-show {
+    background: #fff;
+}

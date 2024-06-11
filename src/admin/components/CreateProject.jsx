@@ -87,7 +87,12 @@ const CreateProject = () => {
         verticalImgArray: urlVerticalImgArrayPaths,
       });
       // Mostrar toast de éxito
-      toast.success("Proyecto creado");
+      toast.success('Proyecto creado', {
+        style: {
+          background: '#232323fc',
+          color: '#fff',
+        },
+      });
 
       // Esperar 3 segundos antes de redirigir a /admin/
       setTimeout(() => {
@@ -97,7 +102,12 @@ const CreateProject = () => {
     } catch (error) {
       console.error("Error adding document: ", error);
       setLoading(false);
-      toast.error("Error al agregar proyecto.");
+      toast.error('Error al agregar proyecto', {
+        style: {
+          background: '#232323fc',
+          color: '#fff',
+        },
+      });
     }
   };
 
