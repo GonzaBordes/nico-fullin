@@ -69,14 +69,6 @@ const CreateProject = () => {
     e.preventDefault();
     setLoading(true);
     try {
-      // Check if "Web" is selected in both categories
-      if (isWebSelected()) {
-        console.log("Web is selected in both category and categoryEN");
-      } else {
-        console.log("Web is not selected in both categories");
-      }
-
-      // Upload files to Firebase Storage
       const urlLogoPath = urlLogo ? await uploadFile(urlLogo) : "";
       const urlHeroImgsPaths = await Promise.all(
         Array.from(urlHeroImgs).map(file => uploadFile(file))
@@ -91,7 +83,6 @@ const CreateProject = () => {
         Array.from(urlWebImagesArray).map(file => uploadFile(file))
       );
 
-      // Save project data to Firestore
       await addDoc(collection(db, "proyectos"), {
         ...formData,
         category,
