@@ -18,6 +18,7 @@ const CreateProject = () => {
   const [urlHorizontalImgArray, setUrlHorizontalImgArray] = useState([]);
   const [urlLogo, setUrlLogo] = useState(null);
   const [urlVerticalImgArray, setUrlVerticalImgArray] = useState([]);
+  const [urlWebImagesArray, setUrlWebImagesArray] = useState([]);
   const [formData, setFormData] = useState({
     name: "",
     slug: "",
@@ -60,10 +61,21 @@ const CreateProject = () => {
     return url;
   };
 
+  const isWebSelected = () => {
+    return category.includes("Web") && categoryEN.includes("Web");
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
     try {
+      // Check if "Web" is selected in both categories
+      if (isWebSelected()) {
+        console.log("Web is selected in both category and categoryEN");
+      } else {
+        console.log("Web is not selected in both categories");
+      }
+
       // Upload files to Firebase Storage
       const urlLogoPath = urlLogo ? await uploadFile(urlLogo) : "";
       const urlHeroImgsPaths = await Promise.all(
@@ -75,6 +87,9 @@ const CreateProject = () => {
       const urlVerticalImgArrayPaths = await Promise.all(
         Array.from(urlVerticalImgArray).map(file => uploadFile(file))
       );
+      const urlWebImagesArrayPaths = await Promise.all(
+        Array.from(urlWebImagesArray).map(file => uploadFile(file))
+      );
 
       // Save project data to Firestore
       await addDoc(collection(db, "proyectos"), {
@@ -85,29 +100,16 @@ const CreateProject = () => {
         heroImgs: urlHeroImgsPaths,
         horizontalImgArray: urlHorizontalImgArrayPaths,
         verticalImgArray: urlVerticalImgArrayPaths,
+        webImages: urlWebImagesArrayPaths,
       });
-      // Mostrar toast de éxito
-      toast.success('Proyecto creado', {
-        style: {
-          background: '#232323fc',
-          color: '#fff',
-        },
-      });
-
-      // Esperar 3 segundos antes de redirigir a /admin/
+      toast.success('Proyecto creado');
       setTimeout(() => {
         setLoading(false);
         navigate("/admin/");
       }, 3000);
     } catch (error) {
-      console.error("Error adding document: ", error);
       setLoading(false);
-      toast.error('Error al agregar proyecto', {
-        style: {
-          background: '#232323fc',
-          color: '#fff',
-        },
-      });
+      toast.error('Error al agregar proyecto');
     }
   };
 
@@ -251,6 +253,18 @@ const CreateProject = () => {
         onChange={(e) => setUrlVerticalImgArray(e.target.files)}
       />
       {urlVerticalImgArray.length > 0 && <p>{urlVerticalImgArray.length} archivos cargados</p>}
+      {isWebSelected() && (
+        <>
+          <label>Imágenes del desarrollo web</label>
+          <input
+            type="file"
+            multiple
+            name="webImages"
+            onChange={(e) => setUrlWebImagesArray(e.target.files)}
+          />
+          {urlWebImagesArray.length > 0 && <p>{urlWebImagesArray.length} archivos cargados</p>}
+        </>
+      )}
       <div className="container-btn">
         <button type="button" onClick={() => setStep(1)} className="btn-create">Volver</button>
         <button type="submit" className="btn-create add">{loading ? <FaSpinner className="spinner-icon" /> : "+ Agregar proyecto"}</button>
